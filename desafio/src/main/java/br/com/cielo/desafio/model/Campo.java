@@ -9,6 +9,10 @@ public class Campo {
 	private Integer coluna;
 	private Integer valor;
 	
+	private Boolean vizinhoLinha;
+	private Boolean vizinhoColuna;
+	private Boolean vizinhoDiagonal;
+	
 	private List<Campo> vizinhosIguais = new ArrayList<Campo>();
 
 	public Boolean isVizinhoIgual(Campo vizinho) {
@@ -17,6 +21,11 @@ public class Campo {
 		boolean mesmoValor = this.getValor().compareTo(vizinho.getValor()) == 0;
 		
 		if(linhaElegivel && colunaElegivel && mesmoValor) {
+			
+			this.vizinhoLinha = this.linha.equals(vizinho.getLinha());
+			this.vizinhoColuna = this.coluna.equals(vizinho.getColuna());
+			this.vizinhoDiagonal = !this.vizinhoLinha && !this.vizinhoColuna; 
+			
 			return Boolean.TRUE;
 		}
 		return Boolean.FALSE;
@@ -60,6 +69,30 @@ public class Campo {
 
 	public void setVizinhosIguais(List<Campo> vizinhosIguais) {
 		this.vizinhosIguais = vizinhosIguais;
+	}
+
+	public Boolean getVizinhoLinha() {
+		return vizinhoLinha;
+	}
+
+	public void setVizinhoLinha(Boolean vizinhoLinha) {
+		this.vizinhoLinha = vizinhoLinha;
+	}
+
+	public Boolean getVizinhoColuna() {
+		return vizinhoColuna;
+	}
+
+	public void setVizinhoColuna(Boolean vizinhoColuna) {
+		this.vizinhoColuna = vizinhoColuna;
+	}
+
+	public Boolean getVizinhoDiagonal() {
+		return vizinhoDiagonal;
+	}
+
+	public void setVizinhoDiagonal(Boolean vizinhoDiagonal) {
+		this.vizinhoDiagonal = vizinhoDiagonal;
 	}
 
 	@Override
